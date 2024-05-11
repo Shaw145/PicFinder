@@ -6,7 +6,7 @@ const lightBox = document.querySelector(".light-box");
 const closeBtn = lightBox.querySelector(".fa-xmark");
 const downloadBtn = lightBox.querySelector(".fa-download");
 
-const pexelApiKey = "Su3lhzflU6mYsBsVqqfdXFP7kuoQaMGpH7PrJVYOzx8wLmQlUjOYf8VF";
+const pexelApiKey = "##################################";
 
 const perPage = 20;
 let currentPage = 1;
