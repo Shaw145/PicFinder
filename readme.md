@@ -6,27 +6,41 @@
 
 ![Weather App Demo](images/demo2.png)
 
-PicFinder is a functional image gallery project built using HTML, CSS, and JavaScript. It allows users to quickly search, view, and download images from the Pexels API, all within seconds. It serves as a clone of Pexels, providing a user-friendly interface for browsing and accessing a vast collection of high-quality images.
+
+PicFinder is a web application that allows users to search and download images from Pexels and Splash using their respective APIs. It provides a seamless experience for exploring and accessing a vast collection of high-quality images from these popular stock image providers.
+
+It is a functional image gallery project built using HTML, CSS, and JavaScript and serves as a clone of Pexels, providing a user-friendly interface for browsing and accessing a vast collection of high-quality images.
 
 ## Features
 
-- **Search**: Users can search for images using keywords, allowing them to find relevant images quickly.
-  
-- **View**: The gallery displays thumbnails of the images fetched from the Pexels API. Clicking on a thumbnail opens a larger preview of the image.
-  
-- **Download**: Users can download images directly from the gallery with ease, enabling them to save their favorite images effortlessly.
+- **Search Images**: Users can search for images by entering keywords or phrases related to the desired subject or theme.
+
+- **Browse Pexels and Splash**: The application integrates with the Pexels and Splash APIs, allowing users to access and view images from both platforms through a unified interface.
+
+- **Image Preview**: Users can preview the images before downloading, ensuring they select the desired image.
+
+- **Download Images**: With a single click, users can download their chosen images in their preferred format and resolution.
 
 - **Responsive Design**: The gallery is fully responsive and works seamlessly on different devices and screen sizes.
 
 ## Technologies Used
 
-- **HTML**: Used for structuring the web pages and creating the layout of the gallery.
-  
-- **CSS**: Employed for styling the gallery, providing a visually appealing interface for users.
-  
-- **JavaScript**: Used to implement the functionality of the gallery, including fetching images from the Pexels API, handling user interactions, and more.
-  
-- **Pexels API**: PicFinder utilizes the Pexels API to fetch high-quality, royalty-free images.
+PicFinder is built using the following technologies:
+
+- **HTML**: Markup language used for creating the structure and layout of the web pages.
+
+- **CSS**: Stylesheet language used for styling and visually enhancing the application's user interface.
+
+- **JavaScript**: Programming language used for implementing the application's logic, handling user interactions, and making API requests to fetch image data from Pexels and Splash APIs.
+
+## APIs Used
+
+PicFinder utilizes the following APIs to fetch and display images:
+
+- Pexels API
+- Splash API
+
+Please note that you may need to obtain API keys or follow the respective documentation to use these APIs in your application.
 
 ## How to Use
 
@@ -49,15 +63,17 @@ To use PicFinder, follow these steps:
 
 
 ## Usage
-1. Upon opening the PicFinder gallery, you will be presented with a search bar and a gallery of images fetched from the Pexels API.
+1. Once the application is running, you will see a search input field and options to choose between Pexels and Splash sites.
 
-2. Type a keyword or phrase in the search bar and press Enter to search for images related to your query.
+2. Enter your desired search term or keywords related to the images you want to find.
 
-3. The gallery will update and display the relevant images.
+3. Select the image provider (Pexels or Splash) from the provided options.
 
-4. Click on a thumbnail to open a larger preview of the image.
+4. Click the "Search" icon to initiate the image search.
 
-5. To download the full-resolution image, click the "Download" button in the image preview.
+5. Browse through the search results and preview the images.
+
+6. Click the "Download" icon next to the desired image to download it to your local machine.
 
 ## Author
  - **Suman Shaw**

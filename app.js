@@ -5,11 +5,14 @@ const searchBtn = document.querySelector(".searchBtn");
 const lightBox = document.querySelector(".light-box");
 const closeBtn = lightBox.querySelector(".fa-xmark");
 const downloadBtn = lightBox.querySelector(".fa-download");
+const api = document.querySelector("#api");
 
-const pexelApiKey = "##################################";
+const pexelApiKey = "Su3lhzflU6mYsBsVqqfdXFP7kuoQaMGpH7PrJVYOzx8wLmQlUjOYf8VF";
+const splashApiKey ="2BsfBnNAfcAGF3oX4F_fRIlYnOXYBGYyJpeHfo8AWp4";
 
 const perPage = 20;
-let currentPage = 1;
+let currentPageP = 1;
+let currentPageS = 1;
 let searchTerm = null;
 
 
@@ -22,9 +25,7 @@ const downloadImg = (url)=>{
 
                 aTag.href = URL.createObjectURL(file);
 
-                aTag.download = new Date().getTime() //file name
-
-                //clicking <a> tag so the file download
+                aTag.download = new Date().getTime()
                 aTag.click();
 
             })
@@ -41,7 +42,7 @@ const showLightBox = (photographer, imgURL) =>{
 }
 
 
-const generateHTML = (images) =>{
+const generateHTMLPexels = (images) =>{
     imageBox.innerHTML += images.map(image =>
         `<li class="card">
             <img src="${image.src.large2x}" alt="" onclick="showLightBox('${image.photographer}', '${image.src.large2x}')">
@@ -58,9 +59,26 @@ const generateHTML = (images) =>{
     ).join("");
 }
 
+const generateHTMLSplash = (images) =>{
+    imageBox.innerHTML += images.map(image =>
+        `<li class="card">
+            <img src="${image.urls.regular}" alt="" onclick="showLightBox('${image.user.name}', '${image.urls.regular}')">
+            <div class="details">
+                <div class="photographer">
+                    <i class="fa-solid fa-camera"></i>
+                    <span>${image.user.name}</span>
+                </div>
+                <button onclick="downloadImg('${image.urls.regular}'); event.stopPropagation();">
+                    <i class="fa-solid fa-download" style="color: #000;"></i>
+                </button>
+            </div>
+        </li>`
+    ).join("");
+}
 
 
-async function getImages(apiURL){
+
+async function getImagesPexels(apiURL){
 
     loadmoreBtn.textContent = "Loading...";
     loadmoreBtn.classList.add("disabled");
@@ -68,7 +86,37 @@ async function getImages(apiURL){
     await fetch(apiURL, {
         headers: {Authorization: pexelApiKey}
     }).then(res => res.json()).then(data => {
-        generateHTML(data.photos);
+        generateHTMLPexels(data.photos);
+        loadmoreBtn.textContent = "Load More";
+        loadmoreBtn.classList.remove("disabled");
+    }).catch(()=>
+        alert("Failed to load images!!!")
+    )
+
+}
+
+async function getImagesSplash(apiURL){
+
+    loadmoreBtn.textContent = "Loading...";
+    loadmoreBtn.classList.add("disabled");
+
+    await fetch(apiURL).then(res => res.json()).then(data => {
+        generateHTMLSplash(data);
+        loadmoreBtn.textContent = "Load More";
+        loadmoreBtn.classList.remove("disabled");
+    }).catch(()=>
+        alert("Failed to load images!!!")
+    )
+}
+
+async function getImagesSplashsearch(apiURL){
+
+    loadmoreBtn.textContent = "Loading...";
+    loadmoreBtn.classList.add("disabled");
+
+    await fetch(apiURL).then(res => res.json()).then(data => {
+        generateHTMLSplash(data.results);
+        console.log(data)
         loadmoreBtn.textContent = "Load More";
         loadmoreBtn.classList.remove("disabled");
     }).catch(()=>
@@ -78,24 +126,58 @@ async function getImages(apiURL){
 }
 
 const loadmoreImages = () =>{
-    currentPage++;
-    let apiURL = `https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`;
-    apiURL = searchTerm ? `https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}` : apiURL;
-    getImages(apiURL);
-
+    if(api.value === "pexels"){
+        currentPageP++;
+        let apiURL = `https://api.pexels.com/v1/curated?page=${currentPageP}&per_page=${perPage}`;
+        apiURL = searchTerm ? `https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPageP}&per_page=${perPage}` : apiURL;
+        getImagesPexels(apiURL);
+    }
+    else{
+        currentPageS++;
+        let apiURL = `https://api.unsplash.com/photos?page=${currentPageS}&per_page=${perPage}&client_id=${splashApiKey}`;
+        apiURL = searchTerm ? `https://api.unsplash.com/search/photos?page=${currentPageS}&query=${searchTerm}&per_page=${perPage}&client_id=${splashApiKey}` : apiURL;
+        if(searchTerm != null){
+            getImagesSplashsearch(apiURL);
+        }
+        else{getImagesSplash(apiURL);}
+    }
 }
 
 
 const loadSearchImages = () =>{
     if(searchInput.value === "") return searchTerm = null;
-    currentPage = 1;
-    searchTerm = searchInput.value;
-    imageBox.innerHTML = "";
-    getImages(`https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`)
+
+    if(api.value === "pexels"){
+        currentPageP = 1;
+        searchTerm = searchInput.value;
+        imageBox.innerHTML = "";
+        getImagesPexels(`https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPageP}&per_page=${perPage}`)
+    }
+    else if(api.value === "splash"){
+        currentPageS = 1;
+        searchTerm = searchInput.value;
+        imageBox.innerHTML = "";
+        getImagesSplashsearch(`https://api.unsplash.com/search/photos?page=${currentPageS}&query=${searchTerm}&per_page=${perPage}&client_id=${splashApiKey}`)
+    }
 }
 
 
-getImages(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`);
+getImagesPexels(`https://api.pexels.com/v1/curated?page=${currentPageP}&per_page=${perPage}`);
+
+api.addEventListener("change", ()=>{
+    if(api.value == 'splash'){
+        imageBox.innerHTML = "";
+        searchInput.value = "";
+        searchInput.placeholder = "Search images in Splash.com";
+        getImagesSplash(`https://api.unsplash.com/photos?page=${currentPageS}&per_page=${perPage}&client_id=${splashApiKey}`)
+    }
+    else{
+        imageBox.innerHTML = "";
+        searchInput.value = "";
+        searchInput.placeholder = "Search images in Pexels.com";
+        getImagesPexels(`https://api.pexels.com/v1/curated?page=${currentPageP}&per_page=${perPage}`);
+    }
+})
 
 loadmoreBtn.addEventListener("click", (e)=>{
     e.preventDefault()

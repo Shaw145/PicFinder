@@ -33,10 +33,16 @@
         <header>
             <div class="heading-text">
                 <h1>PicFinder</h1>
-                <p>Search and Download any image within a Second</p>
+                <p>Search and Download any image within a Second in Both Pexels.com and Splash.com</p>
             </div>
             <div class="input-box">
-                <input type="text" name="" id="searchInput" placeholder="Search images" autocomplete="flase">
+                <div class="apis">
+                    <select name="" id="api">
+                        <option value="pexels" selected>Pexels</option>
+                        <option value="splash">Splash</option>
+                    </select>
+                </div>
+                <input type="text" name="" id="searchInput" placeholder="Search images in Pexels.com" autocomplete="flase">
                 <i class="fa-solid fa-magnifying-glass searchBtn"></i>
             </div>
         </header>
