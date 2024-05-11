@@ -72,7 +72,7 @@ async function getImages(apiURL){
         loadmoreBtn.textContent = "Load More";
         loadmoreBtn.classList.remove("disabled");
     }).catch(()=>
-        alert("Failed to load images!")
+        alert("Failed to load images!!!")
     )
 
 }

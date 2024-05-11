@@ -216,7 +216,6 @@ i{
   }
 
 
-  
 
   .light-box{
     position: fixed;
@@ -241,7 +240,8 @@ i{
   }
 
   .wrapper section .photographer span{
-    font-size: 1.2rem;
+    font-size: 1rem;
+    font-weight: 700;
     color: #333;
   }
 
