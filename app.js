@@ -7,8 +7,8 @@ const closeBtn = lightBox.querySelector(".fa-xmark");
 const downloadBtn = lightBox.querySelector(".fa-download");
 const api = document.querySelector("#api");
 
-const pexelApiKey = "Su3lhzflU6mYsBsVqqfdXFP7kuoQaMGpH7PrJVYOzx8wLmQlUjOYf8VF";
-const splashApiKey ="2BsfBnNAfcAGF3oX4F_fRIlYnOXYBGYyJpeHfo8AWp4";
+const pexelApiKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+const splashApiKey ="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 const perPage = 20;
 let currentPageP = 1;

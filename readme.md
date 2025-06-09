@@ -9,7 +9,7 @@
 
 PicFinder is a web application that allows users to search and download images from Pexels and Splash using their respective APIs. It provides a seamless experience for exploring and accessing a vast collection of high-quality images from these popular stock image providers.
 
-It is a functional image gallery project built using HTML, CSS, and JavaScript and serves as a clone of Pexels, providing a user-friendly interface for browsing and accessing a vast collection of high-quality images.
+The project is built using HTML, CSS, and JavaScript, with the latter handling the application's logic, user interactions, and API requests to fetch image data from the Pexels and Splash APIs.
 
 ## Features
 
